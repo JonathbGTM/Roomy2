@@ -9,7 +9,7 @@ namespace RoomyLeRetour.Controllers
     public class TestsController : Controller
     {
         // GET: Test
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return View();
         }
