@@ -34,8 +34,8 @@ namespace RoomyLeRetour.Models
         [DisplayFormat(DataFormatString = "{0:dddd dd MMMM yyyy}")]
         public string CreatedAt { get; set; }
 
-        [Display(Name ="Utilisateur/Créateur")]
-        public int UserId { get; set; }
+        [Display(Name ="Utilisateur")]
+        public int? UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
     }

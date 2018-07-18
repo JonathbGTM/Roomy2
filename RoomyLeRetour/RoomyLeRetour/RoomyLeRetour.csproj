@@ -173,6 +173,14 @@
     <Compile Include="Migrations\201807180821555_RetraitConfirmedPassword.Designer.cs">
       <DependentUpon>201807180821555_RetraitConfirmedPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807181347368_AddRooms.cs" />
+    <Compile Include="Migrations\201807181347368_AddRooms.Designer.cs">
+      <DependentUpon>201807181347368_AddRooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181349509_AddRoom2.cs" />
+    <Compile Include="Migrations\201807181349509_AddRoom2.Designer.cs">
+      <DependentUpon>201807181349509_AddRoom2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Civility.cs" />
@@ -217,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807180821555_RetraitConfirmedPassword.resx">
       <DependentUpon>201807180821555_RetraitConfirmedPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181347368_AddRooms.resx">
+      <DependentUpon>201807181347368_AddRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181349509_AddRoom2.resx">
+      <DependentUpon>201807181349509_AddRoom2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
