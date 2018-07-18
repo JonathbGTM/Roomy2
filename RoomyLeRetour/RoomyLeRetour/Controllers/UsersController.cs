@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RoomyLeRetour.Utils;
 
 namespace RoomyLeRetour.Controllers
 {
@@ -27,9 +28,22 @@ namespace RoomyLeRetour.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                //ModelState.Remove("Password");
+                //ModelState.Remove("ConfirmedPassword");
+                user.Password = user.Password.HashMD5();
 
+                db.Users.Add(user);
+                db.SaveChanges();
             }
+            ViewBag.Civilities = db.Civilities.ToList();
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

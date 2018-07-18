@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomyLeRetour.Utils.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,10 +23,12 @@ namespace RoomyLeRetour.Models
                            @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
             ErrorMessage = "L'adresse mail n'est pas au bon format")]
+        [ExistingMail(ErrorMessage = "Le mail existe déja")]
         public string Mail { get; set; }
 
         [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]
+        [Major (18, ErrorMessage = "Vous devez être majeur pour vous inscrire")]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "Mot de passe")]
@@ -37,6 +40,7 @@ namespace RoomyLeRetour.Models
         [Display(Name = "Confirmation de mot de passe")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Erreur sur la confirmation du mot de passe")]
+        [NotMapped]
         public string ConfirmedPassword { get; set; }
 
         [Required(ErrorMessage ="Civilité obligatoire")]
