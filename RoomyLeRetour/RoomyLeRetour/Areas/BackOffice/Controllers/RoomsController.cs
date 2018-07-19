@@ -18,7 +18,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
         // GET: BackOffice/Rooms
         public ActionResult Index()
         {
-            var rooms = db.Rooms.Include(r => r.User);
+            var rooms = db.Rooms.Include(r => r.User).Include(r => r.Category);
             return View(rooms.ToList());
         }
 
@@ -30,7 +30,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Room room = db.Rooms.Find(id);
-            Room room = db.Rooms.Include(x => x.User).SingleOrDefault(x => x.ID == id);
+            Room room = db.Rooms.Include(x => x.User).Include( x=> x.Category).SingleOrDefault(x => x.ID == id);
             if (room == null)
             {
                 return HttpNotFound();
@@ -42,6 +42,8 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "ID", "LastName");
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name");
+
             return View();
         }
 
@@ -50,7 +52,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserId")] Room room)
+        public ActionResult Create([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserId,CategoryId")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +62,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
             }
 
             ViewBag.UserId = new SelectList(db.Users, "ID", "LastName", room.UserId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", room.CategoryId);
             return View(room);
         }
 
@@ -76,6 +79,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.Users, "ID", "LastName", room.UserId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", room.CategoryId);
             return View(room);
         }
 
@@ -84,8 +88,12 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserId")] Room room)
+        public ActionResult Edit([Bind(Include = "ID,Name,Capacity,Price,Description,UserId,CategoryId")] Room room)
         {
+            var old = db.Rooms.Find(room.ID);
+            room.CreatedAt = old.CreatedAt;
+            db.Entry(old).State = EntityState.Detached;
+
             if (ModelState.IsValid)
             {
                 db.Entry(room).State = EntityState.Modified;
@@ -93,12 +101,15 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.Users, "ID", "LastName", room.UserId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", room.CategoryId);
+
             return View(room);
         }
 
         // GET: BackOffice/Rooms/Delete/5
         public ActionResult Delete(int? id)
         {
+   
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

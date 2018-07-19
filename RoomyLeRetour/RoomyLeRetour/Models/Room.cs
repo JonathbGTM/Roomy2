@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace RoomyLeRetour.Models
 {
@@ -26,6 +27,7 @@ namespace RoomyLeRetour.Models
 
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
@@ -38,5 +40,10 @@ namespace RoomyLeRetour.Models
         public int? UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+        [Display(Name ="Catégorie")]
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
     }
 }

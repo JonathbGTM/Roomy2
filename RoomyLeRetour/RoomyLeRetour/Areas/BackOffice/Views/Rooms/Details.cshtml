@@ -57,9 +57,17 @@
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Editer", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Retourner à la liste" +"", "Index")
 </p>

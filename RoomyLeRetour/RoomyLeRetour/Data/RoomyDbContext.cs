@@ -19,5 +19,7 @@ namespace RoomyLeRetour.Data
         public DbSet<Civility> Civilities { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+
+        public DbSet <Category> Categories { get; set; }
     }
 }
