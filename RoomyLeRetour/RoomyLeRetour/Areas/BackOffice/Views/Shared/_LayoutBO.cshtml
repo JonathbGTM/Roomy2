@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var user = Session["USER_BO"] as RoomyLeRetour.Models.User;
+
 }
 
 <!DOCTYPE html>
@@ -47,6 +49,9 @@
                         <a class="nav-link" href="http://localhost:59499/BackOffice/categories/Create">Créer catégorie <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
+                <span class="navbar-text">
+                    Bonjour @user.FirstName @user.LastName <a href="@Url.Action("Logout", "Authentication")" class="btn btn-danger">Déconnexion</a>
+                </span>
             </div>
         </nav>
 
