@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -73,6 +74,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var rooms = db.Rooms.Include(r => r.Files).SingleOrDefault(x => x.ID == id);
             Room room = db.Rooms.Find(id);
             if (room == null)
             {
@@ -131,6 +133,35 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
             db.Rooms.Remove(room);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Addfile(int id, HttpPostedFileBase upload)
+        {
+            if (upload.ContentLength > 0)
+            {
+                var model = new RoomFile();
+
+                model.RoomID = id;
+                model.Name = upload.FileName;
+                model.ContentType = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    model.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                db.RoomFiles.Add(model);
+                db.SaveChanges();
+
+                return RedirectToAction("Edit", new { id = model.RoomID });
+            }
+
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
         }
 
         protected override void Dispose(bool disposing)

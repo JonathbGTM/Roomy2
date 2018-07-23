@@ -45,5 +45,7 @@ namespace RoomyLeRetour.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+
+        public ICollection<RoomFile> Files { get; set; }
     }
 }

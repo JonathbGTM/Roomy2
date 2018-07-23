@@ -71,6 +71,21 @@
     </div>
 }
 
+@foreach (var file in Model.Files)
+{
+    <img src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" title="@file.Name" style="width:80px;height:80px;">
+    <p>@file.Name <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a></p>
+}
+
+<form action="@Url.Action("AddFile", "Rooms")" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.ID)
+    <div class="form-group">
+        <label>Fichier</label>
+        <input type="file" name="upload" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-warning">Ajouter</button>
+</form>
+
 <div>
     @Html.ActionLink("Retour à la liste", "Index")
 </div>
