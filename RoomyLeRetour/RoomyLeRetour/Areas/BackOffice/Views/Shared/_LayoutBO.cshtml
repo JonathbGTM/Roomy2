@@ -14,7 +14,10 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/roomy.css" rel="stylesheet" />
 
+    
+
 </head>
+
 <body>
     <div class="container">
         <h1>BackOffice</h1>
@@ -54,6 +57,13 @@
                 </span>
             </div>
         </nav>
+
+        @if(TempData["Message"] != null)
+        {
+            <div class="alert alert-@TempData["MessageType"].ToString()">
+                @TempData["Message"].ToString()
+            </div> 
+        }
 
         @RenderBody()
         <footer class="page-footer font-small blue pt-4">

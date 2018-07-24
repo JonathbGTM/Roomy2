@@ -35,6 +35,10 @@ namespace RoomyLeRetour.Controllers
 
                 db.Users.Add(user);
                 db.SaveChanges();
+
+                //Redirection
+                TempData["Message"] = $"Utilisateur {user.LastName} enregistré";
+                return RedirectToAction("Index", "Home");
             }
             ViewBag.Civilities = db.Civilities.ToList();
             return View();

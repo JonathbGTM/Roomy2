@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using RoomyLeRetour.Controllers;
 using RoomyLeRetour.Data;
 using RoomyLeRetour.Filters;
 using RoomyLeRetour.Models;
@@ -14,7 +15,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
 {
     [AuthenticationFilter]
 
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private RoomyDbContext db = new RoomyDbContext();
 
@@ -56,6 +57,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
             {
                 db.Categories.Add(category);
                 db.SaveChanges();
+                DisplayMessage("Catégorie enregistrée", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
 

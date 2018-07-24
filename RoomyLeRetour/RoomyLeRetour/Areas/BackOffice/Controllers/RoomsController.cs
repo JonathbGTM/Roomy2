@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using RoomyLeRetour.Controllers;
 using RoomyLeRetour.Data;
 using RoomyLeRetour.Filters;
 using RoomyLeRetour.Models;
@@ -15,7 +16,7 @@ namespace RoomyLeRetour.Areas.BackOffice.Controllers
 {
     [AuthenticationFilter]
 
-    public class RoomsController : Controller
+    public class RoomsController : BaseController
     {
         private RoomyDbContext db = new RoomyDbContext();
 

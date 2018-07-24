@@ -36,85 +36,11 @@
         </nav>
 
         @RenderBody()
-        <footer class="page-footer font-small blue pt-4">
 
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-
-                <!-- Grid row -->
-                <div class="row">
-
-                    <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-
-                        <!-- Content -->
-                        <h5 class="text-uppercase">POEC Rouen 2018</h5>
-                        <p>Blablabla.</p>
-
-                    </div>
-                    <!-- Grid column -->
-
-                    <hr class="clearfix w-100 d-md-none pb-3">
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-
-                        <!-- Links -->
-                        <h5 class="text-uppercase">Modules</h5>
-
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!">C#</a>
-                            </li>
-                            <li>
-                                <a href="#!">HTML</a>
-                            </li>
-                            <li>
-                                <a href="#!">Dot.NET</a>
-                            </li>
-                            <li>
-                                <a href="#!">Entity</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-
-                        <!-- Links -->
-                        <h5 class="text-uppercase">Stagiaires</h5>
-
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!">Florian</a>
-                            </li>
-                            <li>
-                                <a href="#!">Thomas</a>
-                            </li>
-                            <li>
-                                <a href="#!">Blandine</a>
-                            </li>
-                            <li>
-                                <a href="#!">Gary</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <!-- Grid column -->
-
-                </div>
-                <!-- Grid row -->
-
-            </div>
-            <!-- Footer Links -->
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">
-                © 2018 Jojo
-
-            </div>
-            <!-- Copyright -->
-
+        <footer class="bg-secondary">
+            &copy; POEC ROUEN 2018
+            @*@Html.Partial("_TopFive")*@
+            @Html.Action("_TopFive", "Shared")
         </footer>
     </div>
 

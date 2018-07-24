@@ -7,10 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using RoomyLeRetour.Utils;
 using RoomyLeRetour.Filters;
+using RoomyLeRetour.Controllers;
 
 namespace RoomyLeRetour.Areas.BackOffice.Controllers
 {
-    public class AuthenticationController : Controller
+    public class AuthenticationController : BaseController
     {
         private RoomyDbContext db = new RoomyDbContext();
 
